@@ -1,0 +1,36 @@
+services:
+  app:
+    build:
+      context: C:\xampp\htdocs\php\section_2\docker
+      dockerfile: Dockerfile
+    container_name: abdullahasif.net
+    restart: always
+    working_dir: /var/www/
+    volumes:
+      - type: bind
+        source: C:\xampp\htdocs\php\section_2\src
+        target: /var/www
+    networks:
+      - default
+
+  nginx:
+    image: nginx:latest 
+    container_name: abdullahasif-nginx
+    restart: always
+    ports:
+      - target: 80
+        published: "8000"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\xampp\htdocs\php\section_2\src
+        target: /var/www
+      - type: bind
+        source: C:\xampp\htdocs\php\section_2\docker\nginx
+        target: /etc/nginx/conf.d
+    networks:
+      - default
+
+networks:
+  default:
+    name: docker_default

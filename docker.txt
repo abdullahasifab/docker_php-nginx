@@ -1,0 +1,1 @@
+docker-compose -f C:\xampp\htdocs\php\section_2\docker\docker-compose.yml up
